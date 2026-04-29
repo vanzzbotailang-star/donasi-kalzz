@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Donasi | Support Kami 💜</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #2b0b3a 0%, #1c0525 100%);
+      font-family: 'Segoe UI', 'Roboto', 'Poppins', system-ui, -apple-system, 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1.5rem;
+    }
+
+    /* Container utama */
+    .donation-card {
+      max-width: 550px;
+      width: 100%;
+      background: rgba(46, 14, 62, 0.75);
+      backdrop-filter: blur(10px);
+      border-radius: 3rem;
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(192, 132, 252, 0.2);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    .donation-card:hover {
+      transform: scale(1.01);
+    }
+
+    /* Bagian gambar hero */
+    .hero-image {
+      width: 100%;
+      background: #2c0e3a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 3px solid #c084fc;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      display: block;
+      transition: all 0.3s;
+    }
+
+    /* Isi konten */
+    .content {
+      padding: 2rem 1.8rem 2.2rem;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #f3e8ff;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    h1 span {
+      background: rgba(192, 132, 252, 0.2);
+      font-size: 1rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-weight: 500;
+      border: 1px solid #c084fc;
+      color: #e9c0ff;
+    }
+
+    .sub {
+      color: #d9b4ff;
+      border-left: 3px solid #c084fc;
+      padding-left: 0.9rem;
+      margin-top: 8px;
+      margin-bottom: 1.8rem;
+      font-weight: 400;
+      font-size: 0.95rem;
+    }
+
+    /* Bagian donasi (nomor Dana) */
+    .donation-box {
+      background: #3a1c4e;
+      border-radius: 2rem;
+      padding: 1.4rem 1.5rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 8px 14px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s;
+      border: 1px solid #9b6dff;
+    }
+
+    .label-icon {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .label-icon svg {
+      width: 26px;
+      height: 26px;
+      stroke: #e2c7ff;
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .label-icon .purple-badge {
+      font-size: 1rem;
+      font-weight: 600;
+      background: #6b21a5;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      color: white;
+      letter-spacing: 0.3px;
+    }
+
+    .dana-number {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: #22112e;
+      padding: 0.8rem 1.2rem;
+      border-radius: 60px;
+      margin-top: 0.5rem;
+    }
+
+    .nomor {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-family: monospace;
+      color: #f5e2ff;
+      background: #2e0e3e;
+      padding: 0.2rem 1rem;
+      border-radius: 48px;
+    }
+
+    .btn-copy {
+      background: #7c3aed;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.85rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-copy:hover {
+      background: #a855f7;
+      transform: scale(0.97);
+    }
+
+    .toast-msg {
+      font-size: 0.75rem;
+      margin-top: 0.6rem;
+      color: #cba6ff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tombol group WhatsApp */
+    .gc-button {
+      background: linear-gradient(95deg, #6d28d9, #9b4dff);
+      border-radius: 3rem;
+      padding: 0.9rem 1rem;
+      text-align: center;
+      margin-bottom: 1.8rem;
+      transition: all 0.25s;
+      border: 1px solid #d8b4fe;
+    }
+
+    .gc-button a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: white;
+      letter-spacing: -0.2px;
+    }
+
+    .gc-button:hover {
+      background: linear-gradient(95deg, #873eff, #b76eff);
+      box-shadow: 0 8px 18px rgba(128, 0, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Info tambahan */
+    .footer-note {
+      background: rgba(59, 26, 87, 0.6);
+      border-radius: 1.5rem;
+      padding: 1rem;
+      text-align: center;
+      margin-top: 0.8rem;
+    }
+
+    .footer-note p {
+      font-size: 0.8rem;
+      color: #cfb3ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .heart {
+      color: #ff89d6;
+    }
+
+    /* Responsif */
+    @media (max-width: 500px) {
+      .content {
+        padding: 1.5rem;
+      }
+      .nomor {
+        font-size: 1rem;
+        word-break: break-all;
+      }
+      .dana-number {
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 1.5rem;
+      }
+      .btn-copy {
+        justify-content: center;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+
+    button {
+      background: none;
+      border: none;
+      font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+
+<div class="donation-card">
+  <!-- Gambar dari link PNG -->
+  <div class="hero-image">
+    <img src="https://cdn.nekohime.site/file/isl1XdaG.jpeg" alt="Donation Banner" loading="eager">
+  </div>
+
+  <div class="content">
+    <h1>
+      Dukung Kami 💜
+      <span>Terima Kasih</span>
+    </h1>
+    <div class="sub">Setiap donasi sangat berarti untuk keberlangsungan.</div>
+
+    <!-- Bagian Donasi: No Dana -->
+    <div class="donation-box">
+      <div class="label-icon">
+        <!-- ikon dompet sederhana -->
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 7H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Z" />
+          <path d="M16 7V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2" />
+          <path d="M18 12h.01" />
+        </svg>
+        <span class="purple-badge">DANA / QRIS</span>
+      </div>
+      <div class="dana-number">
+        <span class="nomor" id="danaNomor">+62 857-4302-3543</span>
+        <button class="btn-copy" id="copyDanaBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          Salin Nomor
+        </button>
+      </div>
+      <div class="toast-msg" id="copyToast" style="opacity: 0; transition: 0.2s;">
+        ✅ Nomor Dana tersalin!
+      </div>
+    </div>
+
+    <!-- Tombol Grup WhatsApp -->
+    <div class="gc-button">
+      <a href="https://chat.whatsapp.com/LHDEUSCJZWy5eP1K5lXsMx?mode=gi_t" target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+          <path d="M.057 24l1.687-6.163C.602 16.108.001 14.091.001 12.023.001 5.392 5.386 0 12.002 0 18.614 0 24 5.392 24 12.023c0 6.632-5.386 12.023-12.003 12.023-1.994 0-3.93-.48-5.614-1.358L.057 24zM12.002 2.263c-5.388 0-9.772 4.383-9.772 9.76 0 2.094.653 4.042 1.786 5.652l-1.114 4.07 4.188-1.097c1.536.888 3.304 1.363 5.12 1.363 5.389 0 9.773-4.383 9.773-9.76 0-5.377-4.384-9.76-9.773-9.76zM17.19 14.64c-.27.765-1.558 1.433-2.446 1.498-.646.05-1.426-.045-2.362-.488-1.417-.662-2.637-1.882-3.705-3.23-.684-.874-1.164-1.875-1.164-2.8 0-.78.356-1.453.953-1.954.346-.292.797-.396 1.192-.396.192 0 .373.019.536.053.282.056.585.196.808.56.433.718.993 1.714 1.087 1.844.198.278.226.58.08.868-.14.26-.44.53-.66.758-.198.204-.422.424-.612.638-.162.182-.358.386-.154.708.415.67 1.086 1.247 1.85 1.738.353.227.714.406 1.08.526.238.078.476.117.7.117.388 0 .708-.134.945-.4.28-.314.444-.72.513-1.094.038-.212.01-.42-.08-.592-.074-.148-.232-.305-.39-.442-.188-.164-.428-.374-.57-.52-.16-.166-.34-.357-.164-.664.194-.336.43-.71.64-1.006.212-.3.44-.63.626-.992.116-.226.118-.44-.006-.654-.144-.257-.447-.498-.756-.567-.14-.032-.287-.048-.44-.048-.347 0-.76.105-1.136.398-.343.27-.636.656-.826 1.096z" />
+        </svg>
+        Gabung Grup WhatsApp
+      </a>
+    </div>
+
+    <div class="footer-note">
+      <p>
+        <span>💜</span> 
+        Terima kasih atas kebaikan Anda, support sekecil apapun sangat berarti
+        <span class="heart">❤️</span>
+      </p>
+      <p style="font-size: 0.7rem; margin-top: 8px;">Klik "Salin Nomor" lalu bayar via Dana / QRIS</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // Nomor dana asli (format asli tanpa spasi berlebih)
+    const rawNumber = "+62 85743023543";
+    // Elemen
+    const copyBtn = document.getElementById("copyDanaBtn");
+    const toastMsg = document.getElementById("copyToast");
+    let toastTimeout = null;
+
+    // Fungsi copy +62 85743023543 (bersihkan spasi opsional)
+    function copyDanaNumber() {
+      // Nomor yang akan dishare: format tanpa spasi? lebih baik tetap +6285743023543 agar mudah paste di dana
+      // Bersihkan sedikit formatting: hapus spasi dan tanda minus opsional -> "+6285743023543"
+      let cleanNumber = rawNumber.replace(/\s+/g, '');   // +6285743023543
+      // pastikan +62 diikuti 857...
+      if (!cleanNumber.startsWith('+')) {
+        cleanNumber = '+' + cleanNumber;
+      }
+      
+      navigator.clipboard.writeText(cleanNumber).then(() => {
+        // Tampilkan toast sukses
+        toastMsg.style.opacity = "1";
+        toastMsg.innerText = "✅ Nomor Dana tersalin! (" + cleanNumber + ")";
+        if (toastTimeout) clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+          toastMsg.style.opacity = "0";
+          setTimeout(() => {
+            toastMsg.innerText = "✅ Nomor Dana tersalin!";
+          }, 200);
+        }, 2500);
+      }).catch(err => {
+        console.error("Gagal copy: ", err);
+        toastMsg.style.opacity = "1";
+        toastMsg.innerText = "❌ Gagal menyalin, coba manual ya";
+        setTimeout(() => {
+          toastMsg.style.opacity = "0";
+        }, 2000);
+      });
+    }
+
+    if (copyBtn) {
+      copyBtn.addEventListener("click", copyDanaNumber);
+    }
+
+    // Optional: jika user ingin klik nomor langsung, bisa juga pilih teks
+    const nomorSpan = document.querySelector(".nomor");
+    if (nomorSpan) {
+      nomorSpan.style.cursor = "pointer";
+      nomorSpan.addEventListener("click", () => {
+        copyDanaNumber();
+      });
+    }
+
+    // Animasi sederhana load, memastikan gambar tetap di-load tanpa error
+    const imgElement = document.querySelector(".hero-image img");
+    if (imgElement) {
+      imgElement.onerror = () => {
+        // jika gambar gagal dimuat (karena alasan apapun), kita fallback dengan warna ungu dan teks
+        const parent = imgElement.parentNode;
+        const fallbackDiv = document.createElement("div");
+        fallbackDiv.style.background = "linear-gradient(120deg, #4c1d95, #a855f7)";
+        fallbackDiv.style.height = "200px";
+        fallbackDiv.style.display = "flex";
+        fallbackDiv.style.alignItems = "center";
+        fallbackDiv.style.justifyContent = "center";
+        fallbackDiv.style.color = "white";
+        fallbackDiv.style.fontWeight = "bold";
+        fallbackDiv.style.fontSize = "1.2rem";
+        fallbackDiv.innerHTML = "💜 Support dengan Donasi 💜";
+        imgElement.style.display = "none";
+        parent.appendChild(fallbackDiv);
+      };
+    }
+  })();
+</script>
+</body>
+</html>
